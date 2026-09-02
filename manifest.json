@@ -1,0 +1,12 @@
+{
+  "name": "DheMoney",
+  "short_name": "DheMoney",
+  "description": "Dashboard keuangan pribadi — terhubung ke Google Spreadsheet & bot Telegram",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#F5F5F1",
+  "theme_color": "#1B2A4A",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

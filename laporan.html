@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1B2A4A">
+<meta name="description" content="DheMoney — laporan & budget keuangan pribadi Anda">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<title>DheMoney — Laporan</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <div class="page-header">
+    <h1>Laporan</h1>
+  </div>
+
+  <div class="content" style="padding-top:16px;">
+    <div class="chip-row" id="periodChips">
+      <button class="chip" data-period="today">Hari Ini</button>
+      <button class="chip" data-period="week">Minggu Ini</button>
+      <button class="chip active" data-period="month">Bulan Ini</button>
+      <button class="chip" data-period="lastmonth">Bulan Lalu</button>
+      <button class="chip" data-period="year">Tahun Ini</button>
+      <button class="chip" data-period="custom">Custom</button>
+    </div>
+
+    <div id="customRange" style="display:none; display:flex; gap:8px; margin-top:10px;">
+      <div class="field" style="flex:1; margin-bottom:0;">
+        <label for="startDate">Dari</label>
+        <input type="date" id="startDate">
+      </div>
+      <div class="field" style="flex:1; margin-bottom:0;">
+        <label for="endDate">Sampai</label>
+        <input type="date" id="endDate">
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-top:18px;">
+      <div class="stat-card">
+        <div class="label">Total Pemasukan</div>
+        <div class="value pos" id="repMasuk">Rp0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Total Pengeluaran</div>
+        <div class="value neg" id="repKeluar">Rp0</div>
+      </div>
+      <div class="stat-card" style="grid-column: 1 / -1;">
+        <div class="label">Net Income</div>
+        <div class="value" id="repNet">Rp0</div>
+      </div>
+    </div>
+
+    <div class="section-title">Pengeluaran per Kategori</div>
+    <div class="stat-card" style="padding:16px;">
+      <canvas id="repCategoryChart" height="180"></canvas>
+      <div id="repChartEmpty" class="empty-state" style="display:none; padding:20px;">
+        <div class="desc">Tidak ada pengeluaran pada periode ini</div>
+      </div>
+    </div>
+
+    <div class="section-title">Tren Harian</div>
+    <div class="stat-card" style="padding:16px;">
+      <canvas id="trendChart" height="200"></canvas>
+    </div>
+
+    <div class="section-title">
+      Budget Bulan Ini
+      <a class="link" id="setBudgetLink">+ Set Budget</a>
+    </div>
+    <div id="budgetList">
+      <div class="loading-state">Memuat...</div>
+    </div>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <a class="nav-item" href="index.html"><span class="nav-icon">🏠</span>Dashboard</a>
+  <a class="nav-item" href="transaksi.html"><span class="nav-icon">📋</span>Transaksi</a>
+  <a class="nav-item" href="dompet.html"><span class="nav-icon">👛</span>Dompet</a>
+  <a class="nav-item active" href="laporan.html"><span class="nav-icon">📊</span>Laporan</a>
+</nav>
+
+<!-- Sheet: Set Budget -->
+<div class="sheet-backdrop" id="budgetSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Set Budget Bulanan</div>
+    <form id="budgetForm">
+      <div class="field">
+        <label for="bKategori">Kategori</label>
+        <select id="bKategori">
+          <option value="Makanan">Makanan</option>
+          <option value="Transportasi">Transportasi</option>
+          <option value="Tagihan">Tagihan</option>
+          <option value="Hiburan">Hiburan</option>
+          <option value="Pendidikan">Pendidikan</option>
+          <option value="Belanja">Belanja</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="bLimit">Limit Bulanan (Rp)</label>
+        <input type="number" id="bLimit" inputmode="numeric" placeholder="1500000" required min="1">
+      </div>
+      <button type="submit" class="btn-primary">Simpan Budget</button>
+      <button type="button" class="btn-secondary" id="budgetCancelBtn">Batal</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/laporan.js"></script>
+</body>
+</html>

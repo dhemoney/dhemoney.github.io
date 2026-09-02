@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1B2A4A">
+<meta name="description" content="DheMoney — dashboard keuangan pribadi Anda">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<title>DheMoney — Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app-shell">
+
+  <div class="cover">
+    <div class="cover-top">
+      <div class="brand"><span class="stamp-dot"></span> DheMoney</div>
+      <button class="icon-btn" onclick="location.href='setup.html'" aria-label="Pengaturan">⚙</button>
+    </div>
+    <div class="balance-label">Saldo Saat Ini</div>
+    <div class="balance-amount" id="saldoAmount">Rp0</div>
+    <div class="balance-sub">
+      <div class="balance-sub-item"><span class="dot in"></span> Masuk <strong id="miniMasuk">Rp0</strong></div>
+      <div class="balance-sub-item"><span class="dot out"></span> Keluar <strong id="miniKeluar">Rp0</strong></div>
+    </div>
+  </div>
+  <div class="perforation"></div>
+
+  <div class="content">
+
+    <div class="section-title">
+      Dompet
+      <a class="link" href="dompet.html">Kelola →</a>
+    </div>
+    <div class="wallet-scroll" id="walletScroll">
+      <div class="skeleton" style="min-width:128px; height:58px;"></div>
+    </div>
+
+    <div class="section-title">Bulan Ini</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">Pemasukan</div>
+        <div class="value pos" id="bulanMasuk">Rp0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Pengeluaran</div>
+        <div class="value neg" id="bulanKeluar">Rp0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Sisa Bulan Ini</div>
+        <div class="value" id="sisaBulan">Rp0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Jumlah Transaksi</div>
+        <div class="value" id="jumlahTx">0</div>
+      </div>
+    </div>
+
+    <div class="section-title">Pengeluaran per Kategori</div>
+    <div class="stat-card" style="padding:16px;">
+      <canvas id="categoryChart" height="180"></canvas>
+      <div id="chartEmpty" class="empty-state" style="display:none; padding:20px;">
+        <div class="desc">Belum ada data pengeluaran bulan ini</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      Transaksi Terbaru
+      <a class="link" href="transaksi.html">Lihat semua →</a>
+    </div>
+    <div class="ledger-list" id="recentList">
+      <div class="loading-state">Memuat...</div>
+    </div>
+
+  </div>
+</div>
+
+<button class="fab" onclick="location.href='transaksi.html?add=1'" aria-label="Tambah transaksi">+</button>
+
+<nav class="bottom-nav">
+  <a class="nav-item active" href="index.html"><span class="nav-icon">🏠</span>Dashboard</a>
+  <a class="nav-item" href="transaksi.html"><span class="nav-icon">📋</span>Transaksi</a>
+  <a class="nav-item" href="dompet.html"><span class="nav-icon">👛</span>Dompet</a>
+  <a class="nav-item" href="laporan.html"><span class="nav-icon">📊</span>Laporan</a>
+</nav>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

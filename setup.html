@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1B2A4A">
+<meta name="description" content="DheMoney — hubungkan ke Web App API Anda">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Setup — DheMoney</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="setup-wrap">
+  <div class="setup-card">
+    <h1>DheMoney</h1>
+    <p>Hubungkan ke Web App API Anda. Data ini hanya tersimpan di browser ini.</p>
+
+    <form id="setupForm">
+      <div class="field">
+        <label for="url">Web App URL</label>
+        <input type="url" id="url" placeholder="https://script.google.com/macros/s/.../exec" required>
+      </div>
+      <div class="field">
+        <label for="key">Secret Key</label>
+        <input type="password" id="key" placeholder="API_SECRET Anda" required>
+      </div>
+      <button type="submit" class="btn-primary">Simpan &amp; Lanjutkan</button>
+    </form>
+    <div id="err" style="color:var(--red); font-size:13px; margin-top:12px; display:none;"></div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script>
+  // Kalau sudah pernah dikonfigurasi, isi form dengan URL yang ada (key tidak ditampilkan ulang)
+  const existing = getConfig();
+  if (existing) document.getElementById("url").value = existing.url;
+
+  document.getElementById("setupForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const url = document.getElementById("url").value.trim();
+    const key = document.getElementById("key").value.trim();
+    const errEl = document.getElementById("err");
+    errEl.style.display = "none";
+
+    setConfig(url, key);
+
+    try {
+      await Api.getSummary();
+      location.href = "index.html";
+    } catch (err) {
+      clearConfig();
+      errEl.textContent = "Gagal terhubung: " + err.message + ". Cek kembali URL dan Secret Key.";
+      errEl.style.display = "block";
+    }
+  });
+</script>
+</body>
+</html>

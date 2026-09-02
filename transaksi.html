@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1B2A4A">
+<meta name="description" content="DheMoney — dashboard keuangan pribadi Anda">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>DheMoney — Transaksi</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <div class="page-header">
+    <h1>Transaksi</h1>
+  </div>
+
+  <div class="content" style="padding-top:16px;">
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="Cari transaksi...">
+    </div>
+
+    <div class="chip-row" id="typeChips">
+      <button class="chip active" data-type="">Semua</button>
+      <button class="chip" data-type="Masuk">Masuk</button>
+      <button class="chip" data-type="Keluar">Keluar</button>
+    </div>
+    <div class="chip-row" id="categoryChips" style="margin-top:6px;"></div>
+    <div class="chip-row" id="walletChips" style="margin-top:6px;"></div>
+
+    <div class="section-title" style="margin-top:18px;">Daftar Transaksi</div>
+    <div class="ledger-list" id="txList">
+      <div class="loading-state">Memuat...</div>
+    </div>
+  </div>
+</div>
+
+<button class="fab" id="fabAdd" aria-label="Tambah transaksi">+</button>
+
+<nav class="bottom-nav">
+  <a class="nav-item" href="index.html"><span class="nav-icon">🏠</span>Dashboard</a>
+  <a class="nav-item active" href="transaksi.html"><span class="nav-icon">📋</span>Transaksi</a>
+  <a class="nav-item" href="dompet.html"><span class="nav-icon">👛</span>Dompet</a>
+  <a class="nav-item" href="laporan.html"><span class="nav-icon">📊</span>Laporan</a>
+</nav>
+
+<!-- Sheet: Tambah / Edit Transaksi -->
+<div class="sheet-backdrop" id="txSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title" id="sheetTitle">Tambah Transaksi</div>
+
+    <form id="txForm">
+      <input type="hidden" id="txId">
+      <div class="field">
+        <label>Jenis Transaksi</label>
+        <div class="type-toggle">
+          <button type="button" class="active in" data-tipe="Masuk">↓ Masuk</button>
+          <button type="button" data-tipe="Keluar">↑ Keluar</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fJumlah">Nominal (Rp)</label>
+        <input type="number" id="fJumlah" inputmode="numeric" placeholder="50000" required min="1">
+      </div>
+      <div class="field">
+        <label for="fTanggal">Tanggal</label>
+        <input type="date" id="fTanggal" required>
+      </div>
+      <div class="field">
+        <label>Dompet</label>
+        <div class="wallet-select-row" id="walletSelectRow"></div>
+      </div>
+      <div class="field">
+        <label for="fKeterangan">Catatan</label>
+        <input type="text" id="fKeterangan" placeholder="misal: makan siang" maxlength="200" required>
+      </div>
+      <button type="submit" class="btn-primary" id="submitBtn">Simpan</button>
+      <button type="button" class="btn-secondary btn-danger" id="deleteBtn" style="display:none;">Hapus Transaksi</button>
+      <button type="button" class="btn-secondary" id="cancelBtn">Batal</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/transaksi.js"></script>
+</body>
+</html>
