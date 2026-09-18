@@ -31,6 +31,7 @@ const Api = {
   listTransactions: (filters) => apiGet("list", filters),
   getSummary: () => apiGet("summary"),
   createTransaction: (data) => apiPost("create", data),
+  createBatchTransactions: (items) => apiPost("createBatch", { items }),
   updateTransaction: (data) => apiPost("update", data),
   deleteTransaction: (id) => apiPost("delete", { id }),
   listWallets: () => apiGet("wallets"),
