@@ -32,7 +32,10 @@
     <div class="chip-row" id="categoryChips" style="margin-top:6px;"></div>
     <div class="chip-row" id="walletChips" style="margin-top:6px;"></div>
 
-    <div class="section-title" style="margin-top:18px;">Daftar Transaksi</div>
+    <div class="section-title" style="margin-top:18px;">
+      Daftar Transaksi
+      <a class="link" id="openBatchLink">+ Input Banyak</a>
+    </div>
     <div class="ledger-list" id="txList">
       <div class="loading-state">Memuat...</div>
     </div>
@@ -83,6 +86,25 @@
       <button type="button" class="btn-secondary btn-danger" id="deleteBtn" style="display:none;">Hapus Transaksi</button>
       <button type="button" class="btn-secondary" id="cancelBtn">Batal</button>
     </form>
+  </div>
+</div>
+
+<!-- Sheet: Input Banyak Transaksi (Batch) -->
+<div class="sheet-backdrop" id="batchSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Input Banyak Transaksi</div>
+
+    <div id="batchRows"></div>
+
+    <button type="button" class="btn-secondary" id="addBatchRowBtn">+ Tambah Baris</button>
+
+    <div class="batch-summary-bar">
+      <span id="batchCountLabel">0 transaksi siap disimpan</span>
+    </div>
+
+    <button type="button" class="btn-primary" id="saveBatchBtn">Simpan Semua</button>
+    <button type="button" class="btn-secondary" id="batchCancelBtn">Batal</button>
   </div>
 </div>
 
