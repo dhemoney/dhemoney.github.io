@@ -720,6 +720,63 @@ button { font-family: inherit; cursor: pointer; }
   color: white;
 }
 
+/* ===== Batch input rows ===== */
+.batch-row {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.batch-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.batch-row-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.batch-row-remove {
+  background: none;
+  border: none;
+  color: var(--red);
+  font-size: 17px;
+  padding: 2px 8px;
+  line-height: 1;
+}
+.batch-row .type-toggle { margin-bottom: 8px; }
+.batch-row .type-toggle button { padding: 8px; font-size: 12.5px; }
+.batch-field-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.batch-field-row:last-child { margin-bottom: 0; }
+.batch-field-row .field { flex: 1; margin-bottom: 0; }
+.batch-field-row input, .batch-field-row select {
+  padding: 9px 10px;
+  font-size: 13.5px;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line);
+  background: var(--paper-raised);
+  font-family: var(--font-body);
+}
+.batch-summary-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  padding: 8px 2px 14px;
+}
+.batch-summary-bar strong { color: var(--ink); font-family: var(--font-mono); }
+
 .skeleton {
   background: linear-gradient(90deg, var(--line) 25%, #EEEDE6 37%, var(--line) 63%);
   background-size: 400% 100%;
